@@ -5,12 +5,18 @@ const create = (req, res, next) => {
 
   user.save((err, result) => {
     if (err) {
-      res.status(400).send({
+      return res.status(400).send({
         error: err.message
       })
     }
 
-    res.status(201).send(result)
+    const {
+      _id,
+      name,
+      email
+    } = result
+
+    res.status(201).send({ _id, name, email })
   })
 }
 
