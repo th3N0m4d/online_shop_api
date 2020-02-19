@@ -11,7 +11,7 @@ describe('Controllers', () => {
   afterAll(async () => dbHandler.closeDatabase())
 
   describe('User', () => {
-    it.only('should create new user', async () => {
+    it('should create new user', async () => {
       const res = await request(fashiop)
         .post('/api/user')
         .send({
