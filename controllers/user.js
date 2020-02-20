@@ -1,3 +1,5 @@
+import * as R from 'ramda'
+
 import User from '../models/User'
 
 const create = (req, res, next) => {
@@ -20,14 +22,28 @@ const create = (req, res, next) => {
   })
 }
 
-const list = (req, res) => {}
-
-const read = (req, res) => {}
+const read = (req, res) => {
+  const {
+    _id,
+    name,
+    email
+  } = req.profile
+  res.status(200).send({ _id, name, email })
+}
 
 const update = (req, res, next) => { }
 
 const remove = (req, res, next) => { }
 
-const userById = (req, res, next, id) => {}
+const userById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || R.isEmpty(user)) {
+      return res.status(400).send({ error: 'User not found' })
+    }
 
-export default { create, read, update, remove, list, userById }
+    req.profile = user
+    next()
+  })
+}
+
+export default { create, read, update, remove, userById }

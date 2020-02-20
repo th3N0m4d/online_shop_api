@@ -4,7 +4,6 @@ import controller from '../controllers/user'
 const router = express.Router()
 
 router.route('/')
-  .get(controller.list)
   .post(controller.create)
 
 router.route('/:id')
