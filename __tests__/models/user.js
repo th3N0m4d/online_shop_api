@@ -58,9 +58,9 @@ describe('Models', () => {
 
     it('should encrypt password', () => {
       const user = new User()
-      const encryptedPasswordSpy = jest.spyOn(user, 'encryptedPassword')
+      const encryptedPasswordSpy = jest.spyOn(user, 'encryptPassword')
 
-      user.encryptedPassword('1234')
+      user.encryptPassword('1234')
 
       expect(encryptedPasswordSpy).toHaveBeenCalledWith('1234')
       expect(encryptedPasswordSpy).toReturn()
@@ -68,9 +68,9 @@ describe('Models', () => {
 
     it('should not encrypt empty password', () => {
       const user = new User()
-      const encryptedPasswordSpy = jest.spyOn(user, 'encryptedPassword')
+      const encryptedPasswordSpy = jest.spyOn(user, 'encryptPassword')
 
-      user.encryptedPassword('')
+      user.encryptPassword('')
 
       expect(encryptedPasswordSpy).toReturnWith('')
     })

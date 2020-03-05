@@ -23,9 +23,9 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.methods = {
   authenticate: function (plainText) {
-    return this.encryptedPassword(plainText) === this.hashed_password
+    return this.encryptPassword(plainText) === this.hashed_password
   },
-  encryptedPassword: function (password) {
+  encryptPassword: function (password) {
     if (R.isEmpty(password)) return ''
 
     try {
@@ -47,7 +47,7 @@ UserSchema
   .set(function (password) {
     this._password = password
     this.salt = this.makeSalt()
-    this.hashed_password = this.encryptedPassword(password)
+    this.hashed_password = this.encryptPassword(password)
   })
   .get(function () {
     return this._password
