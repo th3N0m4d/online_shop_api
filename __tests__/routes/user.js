@@ -33,7 +33,9 @@ describe('Routes', () => {
         .get(`/api/user/${user._id}`)
 
       expect(res.statusCode).toBe(200)
-      expect(res.body).toEqual(user)
+      expect(res.body).toHaveProperty('_id')
+      expect(res.body).toHaveProperty('name')
+      expect(res.body).toHaveProperty('email')
     })
 
     it('should update user by id', async () => {
@@ -48,6 +50,9 @@ describe('Routes', () => {
         .send(userToUpdate)
 
       expect(res.statusCode).toBe(200)
+      expect(res.body).toHaveProperty('_id')
+      expect(res.body).toHaveProperty('name')
+      expect(res.body).toHaveProperty('email')
     })
 
     it('should delete user by id', async () => {
@@ -57,6 +62,9 @@ describe('Routes', () => {
         .delete(`/api/user/${user._id}`)
 
       expect(res.statusCode).toBe(200)
+      expect(res.body).toHaveProperty('_id')
+      expect(res.body).toHaveProperty('name')
+      expect(res.body).toHaveProperty('email')
     })
   })
 
