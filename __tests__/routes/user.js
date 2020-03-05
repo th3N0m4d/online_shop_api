@@ -35,6 +35,29 @@ describe('Routes', () => {
       expect(res.statusCode).toBe(200)
       expect(res.body).toEqual(user)
     })
+
+    it('should update user by id', async () => {
+      const { body: user } = await createUser(fashiop)
+      const userToUpdate = {
+        ...user,
+        name: 'Peter Pan'
+      }
+
+      const res = await request(fashiop)
+        .put(`/api/user/${user._id}`)
+        .send(userToUpdate)
+
+      expect(res.statusCode).toBe(200)
+    })
+
+    it('should delete user by id', async () => {
+      const { body: user } = await createUser(fashiop)
+
+      const res = await request(fashiop)
+        .delete(`/api/user/${user._id}`)
+
+      expect(res.statusCode).toBe(200)
+    })
   })
 
   const createUser = async app => {

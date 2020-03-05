@@ -31,9 +31,35 @@ const read = (req, res) => {
   res.status(200).send({ _id, name, email })
 }
 
-const update = (req, res, next) => { }
+const update = (req, res, next) => {
+  const condition = {
+    _id: req.body._id
+  }
+  const update = req.body
+  const options = { lean: true, new: true }
 
-const remove = (req, res, next) => { }
+  User.findOneAndUpdate(condition, update, options, (err, updatedObject) => {
+    if (err) {
+      return res.status(400).send({ error: err })
+    }
+
+    res.status(200).send(updatedObject)
+  })
+}
+
+const remove = (req, res, next) => {
+  const condition = {
+    _id: req.body._id
+  }
+
+  User.deleteOne(condition, err => {
+    if (err) {
+      return res.status(400).send({ error: err })
+    }
+
+    res.status(200).send()
+  })
+}
 
 const userById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
