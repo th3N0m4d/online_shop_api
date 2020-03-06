@@ -24,6 +24,7 @@ describe('Routes', () => {
       expect(res.body).toHaveProperty('_id')
       expect(res.body).toHaveProperty('name')
       expect(res.body).toHaveProperty('email')
+      expect(res.body).not.toHaveProperty('hashed_password')
     })
 
     it('should retrieve existing user by id', async () => {
@@ -36,6 +37,7 @@ describe('Routes', () => {
       expect(res.body).toHaveProperty('_id')
       expect(res.body).toHaveProperty('name')
       expect(res.body).toHaveProperty('email')
+      expect(res.body).not.toHaveProperty('hashed_password')
     })
 
     it('should update user by id', async () => {
@@ -53,6 +55,7 @@ describe('Routes', () => {
       expect(res.body).toHaveProperty('_id')
       expect(res.body).toHaveProperty('name')
       expect(res.body).toHaveProperty('email')
+      expect(res.body).not.toHaveProperty('hashed_password')
     })
 
     it('should delete user by id', async () => {
@@ -65,6 +68,7 @@ describe('Routes', () => {
       expect(res.body).toHaveProperty('_id')
       expect(res.body).toHaveProperty('name')
       expect(res.body).toHaveProperty('email')
+      expect(res.body).not.toHaveProperty('hashed_password')
     })
   })
 
