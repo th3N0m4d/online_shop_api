@@ -2,9 +2,9 @@
   "name": "fashiop",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon fashiop",
+    "start": "nodemon --exec babel-node server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "standard"
@@ -50,6 +50,8 @@
     "ramda": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/node": "^7.8.7",
     "@babel/plugin-transform-async-to-generator": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
